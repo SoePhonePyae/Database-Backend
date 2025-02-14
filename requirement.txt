@@ -5,10 +5,11 @@
     - SQLAlchemy
 
 3. If there is an error in `database.py`, create a `config.properties` file containing the following variables with your PostgreSQL configurations:
-    - dbname
-    - user
-    - password
-    - host
-    - port
+    - DB_USER 
+    - DB_PASSWORD 
+    - DB_HOST 
+    - DB_PORT 
+    - DB_NAME 
+
 
 4. Ensure that you use the exact column names defined in your Python model when querying in Flask.
