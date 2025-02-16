@@ -1,6 +1,6 @@
 # Backend API with Flask
 
-Database Backend For GameRental Applications  
+Database Backend For GameRental Application
 
 **Customer Database** → [GitHub Repo](https://github.com/Kusk24/DataBase-Term-Project)  
 **Staff & Admin Database** → [GitHub Repo](https://github.com/Tommyzizii/GameRentalService_Admin_Staff)  
