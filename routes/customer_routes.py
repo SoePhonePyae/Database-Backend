@@ -1,8 +1,8 @@
-from flask import Flask,jsonify,request
-from database import app,db 
-from model import *
+from flask import jsonify
+from app import app,db
+from model import Customer
 
-@app.route('/customer', methods = ['GET'])
+@app.route('/customer', methods=['GET'])
 def get_customers():
     customers = Customer.query.all()
     return jsonify([{"customer_id" : c.Customer_Id,

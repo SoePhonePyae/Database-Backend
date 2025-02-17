@@ -1,8 +1,9 @@
-from database import app,db
+from database.Database import app,db
 import model
-import routes
+import routes.customer_routes
 
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
+        print(app.url_map)
     app.run(debug=True)

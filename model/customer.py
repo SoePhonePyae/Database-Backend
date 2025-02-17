@@ -1,4 +1,4 @@
-from database import db
+from database.Database import db
 from datetime import date  
 
 class Customer(db.Model):
