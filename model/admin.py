@@ -1,4 +1,4 @@
-from database import db
+from database.Database import db
 
 class Admin(db.Model):
     __tablename__ = "admin"
