@@ -1,6 +1,6 @@
-from database.Database import app,db
+from database import *
 import model
-import routes.customer_routes
+import routes
 
 if __name__ == "__main__":
     with app.app_context():
