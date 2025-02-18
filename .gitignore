@@ -1,2 +1,6 @@
 /config.properties
 /.venv
+/__pycache__
+/database/__pycache__
+/module/__pycache__
+/routes/__pycache__
