@@ -1,4 +1,9 @@
 from .Admin import Admin
-from .Banned_members import Banned_Members
+from .Banned_members import Banned_member
 from .Customer import Customer
-# from .Game import Game
+from .Game import Game
+from .Game_Report import Game_Report
+from .Notice import Notice
+from .Payment import Payment
+from .Rental import Rental
+from .Staff import Staff
