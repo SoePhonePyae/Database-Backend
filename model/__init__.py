@@ -1,5 +1,5 @@
 from .Admin import Admin
-from .Banned_members import Banned_member
+from .Banned_member import Banned_member
 from .Customer import Customer
 from .Game import Game
 from .Game_Report import Game_Report
