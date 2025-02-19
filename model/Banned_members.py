@@ -1,8 +1,8 @@
 from database import db 
 from datetime import date
 
-class Banned_members(db.Model):
-    __table__ = db.Table('banned_members', db.metadata, autoload_with=db.engine)
+class Banned_member(db.Model):
+    __table__ = db.Table('banned_member', db.metadata, autoload_with=db.engine)
 
 # class Banned_Members(db.Model):
 #     __tablename__ = 'banned_members'
