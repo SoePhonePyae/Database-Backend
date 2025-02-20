@@ -72,7 +72,7 @@ CREATE TABLE Notice (
 	ON DELETE RESTRICT
 );
  
--- 
+--Correct
 CREATE TABLE Game (
     game_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -92,9 +92,9 @@ CREATE TABLE Game (
  
 CREATE TYPE rental_status AS ENUM ('Pending', 'Renting', 'Returned');
 
- 
+ --Correct
 CREATE TABLE Rental (
-    id SERIAL PRIMARY KEY,
+    rental_id SERIAL PRIMARY KEY,
     game_id INT NOT NULL,
     customer_id INT NOT NULL,
     status rental_status NOT NULL,
