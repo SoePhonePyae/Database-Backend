@@ -59,12 +59,12 @@ def update_rental(rental_id):
     if not r:
         return jsonify({"error": "Rental not found"})
     
-    r.game_id = data['game_id']
-    r.customer_id = data['customer_id']
-    r.status = data['status']
-    r.rent_date = data['rent_date']
-    r.due_date = data['due_date']
-    r.duration = data['duration']
+    r.game_id = data.get('game_id',r.game_id)
+    r.customer_id = data.get('customer_id',r.customer_id )
+    r.status = data.get('status',r.status)
+    r.rent_date = data('rent_date',r.rent_date)
+    r.due_date = data('due_date',r.due_date)
+    r.duration = data('duration',r.duration)
 
     db.sessoin.commit()
     return jsonify({"message": "rental updated successfully"})
