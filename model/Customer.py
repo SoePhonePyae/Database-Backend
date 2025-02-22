@@ -1,19 +1,20 @@
 from database import db
 from datetime import date  
 
-class Customer(db.Model):
-    __table__ = db.Table('customer', db.metadata, autoload_with=db.engine)
-    
 # class Customer(db.Model):
-#     __tablename__ = "customer"
-#     Customer_Id = db.Column(db.Integer, primary_key = True, autoincrement=True)
-#     Customer_Name = db.Column(db.String(255), nullable = False)
-#     Email = db.Column(db.String(255), nullable = False, unique = True)
-#     Password = db.Column(db.String(255), nullable = False)
-#     Phone_Number = db.Column(db.String(20), nullable = False)
-#     Street_Address = db.Column(db.String(255), nullable = False)
-#     City = db.Column(db.String(100), nullable = False)
-#     State = db.Column(db.String(100), nullable = False)
-#     Zip_Code = db.Column(db.String(20), nullable = False)
-#     Staff_Id = db.Column(db.Integer, nullable = False)
-#     Created_Date = db.Column(db.Date, default=date.today)
+#     __table__ = db.Table('customer', db.metadata, autoload_with=db.engine)
+    
+class Customer(db.Model):
+    __tablename__ = "customer"
+    customer_id = db.Column(db.Integer, primary_key=True)
+    customer_name = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    password = db.Column(db.String(255), nullable=False)
+    phone_number = db.Column(db.String(20), nullable=False)
+    street_address = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(100), nullable=False)
+    state = db.Column(db.String(100), nullable=False)
+    zip_code = db.Column(db.String(20), nullable=False)
+    staff_id = db.Column(db.Integer, db.ForeignKey('staff.staff_id'), nullable=False)
+    created_date = db.Column(db.Date)
+    staff = db.relationship('Staff', backref=db.backref('customers', lazy=True))
