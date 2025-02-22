@@ -77,4 +77,4 @@ def delete_rental(rental_id):
     
     db.session.delete(r)
     db.session.commit()
-    return jsonify("message": "rental deleted successfully")
+    return jsonify({"message": "rental deleted successfully"})
