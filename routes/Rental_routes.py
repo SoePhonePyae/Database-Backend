@@ -32,6 +32,47 @@ def get_rental(rental_id):
         "duration": r.duration
     })
 
+#To use in currently status
+@app.route('/rental/renting/<int:customer_id>', methods=['GET'])
+def get_renting_rentals_by_customerid(customer_id):
+    rentals = Rental.query.filter_by(customer_id=customer_id, status='Renting').all()
+    if not rentals:
+        return jsonify({"error": "No renting rentals found"}), 404
+    
+    return jsonify([
+        {
+            "rental_id": r.rental_id,
+            "game_id": r.game_id,
+            "customer_id": r.customer_id,
+            "status": r.status,
+            "rent_date": r.rent_date,
+            "due_date": r.due_date,
+            "duration": r.duration
+        }
+        for r in rentals
+    ])
+
+#To use in history
+@app.route('/rental/returned/<int:customer_id>', methods=['GET'])
+def get_returned_rentals_by_customerid(customer_id):
+    rentals = Rental.query.filter_by(customer_id=customer_id, status='Returned').all()
+    if not rentals:
+        return jsonify({"error": "No returned rentals found"}), 404
+    
+    return jsonify([
+        {
+            "rental_id": r.rental_id,
+            "game_id": r.game_id,
+            "customer_id": r.customer_id,
+            "status": r.status,
+            "rent_date": r.rent_date,
+            "due_date": r.due_date,
+            "duration": r.duration
+        }
+        for r in rentals
+    ])
+
+
 @app.route('/rental', methods=['POST'])
 def create_rental():
     data = request.get_json()
