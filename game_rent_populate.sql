@@ -27,10 +27,10 @@ INSERT INTO notice (reason, date, admin_id) VALUES
 ('Holiday hours', '2025-10-28', 2);
 
 -- Populate Game Table
-INSERT INTO game (game_name, release_date, platform, genre, rating, stock_number, image_link, admin_id, last_action) VALUES
-('Elden Ring', '2022-02-25', 'PC', 'Action', 'M', 10, 'http://example.com/gameA.jpg', 1, NOW()),
-('Halo Infinite', '2021-12-08', 'Xbox Series X', 'FPS', 'T', 5, 'http://example.com/gameB.jpg', 2, NOW()),
-('Civilization VII', '2025-02-11', 'PC', 'Strategy', 'E', 10, 'http://example.com/gameC.jpg', 1, NOW());
+INSERT INTO Game (game_name, release_date, platform, genre, rating, stock_number, price, image_link, admin_id, last_action) VALUES
+('Elden Ring', '2022-02-25', 'PC', 'Action', 'M', 10, 30, 'http://example.com/gameA.jpg', 1, NOW()),
+('Halo Infinite', '2021-12-08', 'Xbox Series X', 'FPS', 'T', 5, 40, 'http://example.com/gameB.jpg', 2, NOW()),
+('Civilization VII', '2025-02-11', 'PC', 'Strategy', 'E', 10, 35, 'http://example.com/gameC.jpg', 1, NOW());
 
 -- Populate Rental Table
 INSERT INTO rental (game_id, customer_id, status, rent_date, due_date, duration) VALUES
