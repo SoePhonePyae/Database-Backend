@@ -50,7 +50,7 @@ def create_staff():
         
 
 @app.route('/staff/<int:staff_id>', methods=['PUT'])
-def update_customer(staff_id):
+def update_staff(staff_id):
     data = request.get_json()
     staff = Staff.query.get(staff_id)
 
