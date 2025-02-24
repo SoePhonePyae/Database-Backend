@@ -41,7 +41,7 @@ def create_staff():
         zip_code = data['zip_code'],
         type = data['type'],
         admin_id = data['admin_id'],
-        last_action = datetime.today().strftime('%Y-%m-%d')
+        last_action = "Added"
     )
 
     db.session.add(new_staff)
@@ -67,7 +67,7 @@ def update_staff(staff_id):
     staff.zip_code = data.get("zip_code", staff.zip_code)
     staff.type = data.get("type", staff.type)
     staff.admin_id = data.get("admin_id", staff.admin_id)
-    staff.last_action = datetime().today().strftime('%Y-%m-%d')
+    staff.last_action = "Updated"
     
     db.session.commit()
     return jsonify({"message": "staff updated successfully"})

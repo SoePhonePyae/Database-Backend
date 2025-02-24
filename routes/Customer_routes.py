@@ -53,7 +53,7 @@ def create_customer():
     
     new_customer = Customer(
         customer_name = data['customer_name'],
-        email = data['email '],
+        email = data['email'],
         password = data['password'],
         phone_number = data['phone_number'],
         street_address = data['street_address'],
