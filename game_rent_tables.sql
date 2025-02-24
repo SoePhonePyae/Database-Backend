@@ -24,7 +24,7 @@ state VARCHAR(100) NOT NULL,
 zip_code VARCHAR(20) NOT NULL,
 type staff_type NOT NULL,
 admin_id INT NOT NULL,
-last_action TIMESTAMP,
+last_action VARCHAR(100),
 CONSTRAINT fk_admin FOREIGN KEY (admin_id) REFERENCES Admin(admin_id)
 ON UPDATE CASCADE
 ON DELETE RESTRICT
@@ -83,7 +83,7 @@ stock_number INT NOT NULL,
 price INT NOT NULL,
 image_link VARCHAR(255) NOT NULL,
 admin_id INT NOT NULL,
-last_action TIMESTAMP,
+last_action VARCHAR (100),
 CONSTRAINT fk_admin_game FOREIGN KEY (admin_id) REFERENCES Admin(admin_id)
 ON UPDATE CASCADE
 ON DELETE RESTRICT
