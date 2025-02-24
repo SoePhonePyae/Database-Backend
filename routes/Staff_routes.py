@@ -46,7 +46,7 @@ def create_staff():
 
     db.session.add(new_staff)
     db.session.commit()
-    return jsonify({"message": "Game added"})
+    return jsonify({"message": "Staff added"})
         
 
 @app.route('/staff/<int:staff_id>', methods=['PUT'])
