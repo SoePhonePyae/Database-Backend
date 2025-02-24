@@ -9,7 +9,6 @@ email VARCHAR(255) UNIQUE NOT NULL,
 password VARCHAR(255) NOT NULL
 );
 
-
 CREATE TYPE staff_type AS ENUM ('Part_Time', 'Full_Time', 'Internship');
 
 CREATE TABLE Staff (
@@ -81,6 +80,7 @@ platform VARCHAR(100) NOT NULL,
 genre VARCHAR(100) NOT NULL,
 rating VARCHAR(20) NOT NULL,
 stock_number INT NOT NULL,
+price INT NOT NULL,
 image_link VARCHAR(255) NOT NULL,
 admin_id INT NOT NULL,
 last_action TIMESTAMP,

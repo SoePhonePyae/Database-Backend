@@ -17,3 +17,25 @@ def get_customers():
                      "staff_id" : c.staff_id,
                      "created_date" : c.created_date} 
                      for c in customers])
+
+@app.route('/customer/<string:email>/<string:password>', methods=['GET'])
+def check_customer_password(email, password):
+    """
+    A simple endpoint that looks up a customer by email,
+    compares the plain-text password, and returns a JSON response.
+    """
+    # Look up the customer by email
+    customer = Customer.query.filter_by(email=email).first()
+    if not customer:
+        return jsonify({"error": "Customer not found"}), 404
+
+    # Compare the plain-text password (again, not recommended for production)
+    if customer.password == password:
+        return jsonify({
+            "message": "Login successful",
+            "customer_id": customer.customer_id,
+            "customer_name": customer.customer_name,
+            "email": customer.email
+        }), 200
+    else:
+        return jsonify({"error": "Incorrect password"}), 401

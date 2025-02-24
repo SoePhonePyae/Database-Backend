@@ -14,6 +14,7 @@ def get_games():
         "genre": g.genre,
         "rating": g.rating,
         "stock_number": g.stock_number,
+        "price": g.price,
         "image_link": g.image_link,
         "admin_id": g.admin_id,
         "last_action": g.last_action
@@ -33,6 +34,7 @@ def get_game(game_id):
         "genre": g.genre,
         "rating": g.rating,
         "stock_number": g.stock_number,
+        "price": g.price,
         "image_link": g.image_link,
         "admin_id": g.admin_id,
         "last_action": g.last_action
@@ -52,6 +54,7 @@ def create_game():
         genre=data["genre"],
         rating=data["rating"],
         stock_number=data["stock_number"],
+        price = data["price"],
         image_link=data["image_link"],
         admin_id=data["admin_id"],
         last_action="Added"
@@ -74,6 +77,7 @@ def update_game(game_id):
     g.genre = data.get("genre", g.genre)
     g.rating = data.get("rating", g.rating)
     g.stock_number = data.get("stock_number", g.stock_number)
+    g.price = data.get("price", g.price)
     g.image_link = data.get("image_link", g.image_link)
     g.admin_id = data.get("admin_id", g.admin_id)
     g.last_action = "Updated"

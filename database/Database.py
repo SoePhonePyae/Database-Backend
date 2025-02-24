@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 import configparser
 from flask import Flask
+from flask_cors import CORS
 
 config = configparser.ConfigParser()
 config.read("config.properties")
@@ -15,6 +16,7 @@ DB_PORT = config.get('DEFAULT','DB_PORT')
 DB_NAME = config.get('DEFAULT','DB_NAME')
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
