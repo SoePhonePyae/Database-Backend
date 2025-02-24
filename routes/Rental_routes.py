@@ -1,14 +1,15 @@
 from flask import Flask, request, jsonify
 from app import app, db
-from model import Rental
+from model import Rental, Game
 from datetime import datetime
 
 @app.route('/rental', methods=['GET'])
 def get_rentals():
-    rentals = Rental.query.all()
+    rentals = Rental.query.join(Game, Game.game_id == Rental.game_id).all()
     return jsonify([{
         "rental_id": r.rental_id,
         "game_id": r.game_id,
+        "game_name": r.game.game_name,
         "customer_id": r.customer_id,
         "status": r.status,
         "rent_date": r.rent_date,
