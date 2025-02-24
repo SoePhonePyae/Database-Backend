@@ -35,7 +35,7 @@ def create_staff():
         password = data['password'],
         phone_number = data['phone_number'],
         salary = data['salary'],
-        street_addess = data['street_address'],
+        street_address = data['street_address'],
         city = data['city'],
         state = data['state'],
         zip_code = data['zip_code'],
