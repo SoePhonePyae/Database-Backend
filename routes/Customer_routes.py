@@ -1,6 +1,7 @@
-from flask import jsonify
+from flask import jsonify, request
 from app import app,db
 from model import Customer
+from datetime import datetime
 
 @app.route('/customer', methods=['GET'])
 def get_customers():
@@ -39,3 +40,31 @@ def check_customer_password(email, password):
         }), 200
     else:
         return jsonify({"error": "Incorrect password"}), 401
+    
+
+@app.route('/customer', methods=['POST'])
+def create_customer():
+    data = request.get_json()
+    required_fields = ['customer_name', 'email', 'password', 'phone_number', 
+                       'street_address', 'city', 'state', 'zip_code', 'staff_id']
+    
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+    
+    new_customer = Customer(
+        customer_name = data['customer_name'],
+        email = data['email '],
+        password = data['password'],
+        phone_number = data['phone_number'],
+        street_address = data['street_address'],
+        city = data['city'],
+        state = data['state'],
+        zip_code = data['zip_code'],
+        staff_id = data['staff_id'],
+        created_date = datetime.now()
+    )
+
+    db.session.add(new_customer)
+    db.session.commit()
+
+    return jsonify({"message": "New customer added successfully"})
