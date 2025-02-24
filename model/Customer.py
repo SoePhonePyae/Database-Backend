@@ -1,8 +1,5 @@
 from database import db
 from datetime import date  
-
-# class Customer(db.Model):
-#     __table__ = db.Table('customer', db.metadata, autoload_with=db.engine)
     
 class Customer(db.Model):
     __tablename__ = "customer"
