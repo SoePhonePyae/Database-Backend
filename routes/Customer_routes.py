@@ -68,3 +68,25 @@ def create_customer():
     db.session.commit()
 
     return jsonify({"message": "New customer added successfully"})
+
+
+@app.route('/customer/<int:customer_id>', methods=['PUT'])
+def update_customer(customer_id):
+    data = request.get_json()
+    customer = Customer.query.get(customer_id)
+
+    if not customer:
+        return jsonify({"error": "Customer not found"}), 404
+
+    customer.customer_name = data.get("customer_name", customer.customer_name)
+    customer.email = data.get("email", customer.email)
+    customer.password = data.get("password", customer.password)
+    customer.phone_number = data.get("phone_number", customer.phone_number)
+    customer.street_address = data.get("street_address", customer.street_address)
+    customer.city = data.get("city", customer.city)
+    customer.state = data.get("state", customer.state)
+    customer.zip_code = data.get("zip_code", customer.zip_code)
+    customer.staff_id = data.get("staff_id", customer.staff_id)
+    
+    db.session.commit()
+    return jsonify({"message": "customer updated successfully"})
