@@ -22,7 +22,7 @@ def get_staff():
 
 
 @app.route("/staff", methods=['POST'])
-def create_game():
+def create_staff():
     data = request.get_json()
     required_fields = ['staff_name', 'email', 'password', 'phone_number', 'salary', 
                        'street_address', 'city', 'state', 'zip_code', 'type', 'admin_id']
@@ -35,7 +35,7 @@ def create_game():
         password = data['password'],
         phone_number = data['phone_number'],
         salary = data['salary'],
-        street_addess = data['street_address'],
+        street_address = data['street_address'],
         city = data['city'],
         state = data['state'],
         zip_code = data['zip_code'],
@@ -46,5 +46,28 @@ def create_game():
 
     db.session.add(new_staff)
     db.session.commit()
-    return jsonify({"message": "Game added"})
+    return jsonify({"message": "Staff added"})
         
+
+@app.route('/staff/<int:staff_id>', methods=['PUT'])
+def update_staff(staff_id):
+    data = request.get_json()
+    staff = Staff.query.get(staff_id)
+
+    if not staff:
+        return jsonify({"error": "staff not found"}), 404
+
+    staff.staff_name = data.get("staff_name", staff.staff_name)
+    staff.email = data.get("email", staff.email)
+    staff.password = data.get("password", staff.password)
+    staff.phone_number = data.get("phone_number", staff.phone_number)
+    staff.street_address = data.get("street_address", staff.street_address)
+    staff.city = data.get("city", staff.city)
+    staff.state = data.get("state", staff.state)
+    staff.zip_code = data.get("zip_code", staff.zip_code)
+    staff.type = data.get("type", staff.type)
+    staff.admin_id = data.get("admin_id", staff.admin_id)
+    staff.last_action = datetime().today().strftime('%Y-%m-%d')
+    
+    db.session.commit()
+    return jsonify({"message": "staff updated successfully"})
