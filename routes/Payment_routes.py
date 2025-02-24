@@ -33,7 +33,6 @@ def create_payment():
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
     new_payment = Payment(
-        payment_id=data["payment_id"],
         rental_id=data["rental_id"],
         proof=data["proof"],
         method=data["method"]
