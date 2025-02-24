@@ -26,12 +26,6 @@ INSERT INTO notice (reason, date, admin_id) VALUES
 ('New game rental policy', '2025-10-27', 1),
 ('Holiday hours', '2025-10-28', 2);
 
--- -- Populate Game Table
--- INSERT INTO Game (game_name, release_date, platform, genre, rating, stock_number, price, image_link, admin_id, last_action) VALUES
--- ('Elden Ring', '2022-02-25', 'PC', 'Action', 'M', 10, 30, 'http://example.com/gameA.jpg', 1, 'Added'),
--- ('Halo Infinite', '2021-12-08', 'Xbox Series X', 'FPS', 'T', 5, 40, 'http://example.com/gameB.jpg', 2, 'Upadated'),
--- ('Civilization VII', '2025-02-11', 'PC', 'Strategy', 'E', 10, 35, 'http://example.com/gameC.jpg', 1, 'Added');
-
 INSERT INTO Game (game_name, release_date, platform, genre, rating, stock_number, price, image_link, admin_id, last_action) VALUES
 ('Black Myth: Wukong', '2024-08-20', 'PC', 'Action RPG', 'M', 10, 65, 'https://storage-asset.msi.com/event/2024/CND/black-myth-wukong/images/kv-m.jpg', 3, 'Added'),
 ('God of War Ragnarok', '2022-11-09', 'PS5', 'Action', 'M', 8, 50, 'https://i0.wp.com/www.consolecreatures.com/wp-content/uploads/2022/11/reviewgodofwar.webp', 1, 'Added'),
@@ -69,5 +63,3 @@ INSERT INTO payment (rental_id, proof, method) VALUES
 -- Populate Game_Reports Table
 INSERT INTO game_reports (rental_id, reason, report_date, detail, attachment) VALUES
 (1, 'Game disc scratched', '2025-10-25', 'Game disc has visible scratches and skips during gameplay.', 'http://example.com/report1.jpg');
-
-select * from game
