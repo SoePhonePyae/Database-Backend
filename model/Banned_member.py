@@ -1,9 +1,6 @@
 from database import db 
 from datetime import date
 
-# class Banned_member(db.Model):
-#     __table__ = db.Table('banned_member', db.metadata, autoload_with=db.engine)
-
 class Banned_member(db.Model):
     __tablename__ = "banned_members"
     ban_id = db.Column(db.Integer, primary_key=True)

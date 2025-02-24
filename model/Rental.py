@@ -8,7 +8,6 @@ class Rental(db.Model):
     game_id = db.Column(db.Integer, db.ForeignKey('game.game_id'), nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'), nullable=False)
     
-    # FIX: Added a name to the Enum type
     status = db.Column(Enum('Pending', 'Renting', 'Returned', name="rental_status"), nullable=False)
     
     rent_date = db.Column(db.Date, nullable=False)
