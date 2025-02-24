@@ -47,10 +47,12 @@ def get_renting_rentals_by_customerid(customer_id):
             "status": r.status,
             "rent_date": r.rent_date,
             "due_date": r.due_date,
-            "duration": r.duration
+            "duration": r.duration,
+            "game_link": r.game.image_link  # added game image link from relationship
         }
         for r in rentals
     ])
+
 
 #To use in history
 @app.route('/rental/returned/<int:customer_id>', methods=['GET'])
