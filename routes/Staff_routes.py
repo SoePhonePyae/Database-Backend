@@ -22,7 +22,7 @@ def get_staff():
 
 
 @app.route("/staff", methods=['POST'])
-def create_game():
+def create_staff():
     data = request.get_json()
     required_fields = ['staff_name', 'email', 'password', 'phone_number', 'salary', 
                        'street_address', 'city', 'state', 'zip_code', 'type', 'admin_id']
