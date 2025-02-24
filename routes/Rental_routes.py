@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from app import app, db
 from model import Rental
-from datetime import date
+from datetime import datetime
 
 @app.route('/rental', methods=['GET'])
 def get_rentals():
@@ -84,13 +84,15 @@ def create_rental():
         game_id=data['game_id'],
         customer_id=data['customer_id'],
         status=data['status'],
-        rent_date=data['rent_date'],
-        due_date=data['due_date'],
+        rent_date = datetime.strptime(data["rent_date"], "%d-%m-%Y").date(),
+        due_date = datetime.strptime(data["due_date"], "%d-%m-%Y").date()
     )
 
     db.session.add(new_rental)
     db.session.commit()
-    return jsonify({"message": "Rental successfully added"})
+    return jsonify({"message": "Rental successfully added",
+                    "rental_id": new_rental.rental_id  # <-- must return this
+})
 
 @app.route('/rental/<int:rental_id>', methods=['PUT'])
 def update_rental(rental_id):
