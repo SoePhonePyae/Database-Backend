@@ -2,7 +2,7 @@ SELECT * FROM admin;
 
 SELECT * FROM banned_members;
 
-SELECT * FROM customer;
+SELECT customer.* FROM customer LEFT JOIN banned_members ON customer.customer_id = banned_members.customer_id WHERE banned_members.customer_id IS NULL;
 
 SELECT * FROM game;
 

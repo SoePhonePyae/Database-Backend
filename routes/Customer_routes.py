@@ -1,23 +1,31 @@
 from flask import jsonify, request
 from app import app,db
-from model import Customer
+from model import Customer, Banned_member
 from datetime import datetime
 
 @app.route('/customer', methods=['GET'])
 def get_customers():
-    customers = Customer.query.all()
-    return jsonify([{"customer_id" : c.customer_id,
-                     "customer_name" : c.customer_name,
-                     "email" : c.email,
-                     "password" : c.password,
-                     "phone_number" : c.phone_number,
-                     "street_address" : c.street_address,
-                     "city" : c.city,
-                     "state" : c.state,
-                     "zip_code" : c.zip_code,
-                     "staff_id" : c.staff_id,
-                     "created_date" : c.created_date} 
-                     for c in customers])
+    unbanned_customers = db.session.query(Customer).outerjoin(
+            Banned_member, Customer.customer_id == Banned_member.customer_id
+        ).filter(Banned_member.customer_id.is_(None)).all()
+
+    output = []
+    for customer in unbanned_customers:
+        output.append({
+            "customer_id": customer.customer_id,
+            "customer_name": customer.customer_name,
+            "email": customer.email,
+            "password": customer.password,
+            "phone_number": customer.phone_number,
+            "street_address": customer.street_address,
+            "city": customer.city,
+            "state": customer.state,
+            "zip_code" : customer.zip_code,
+            "staff_id" : customer.staff_id,
+            "created_date" : customer.created_date
+        })
+
+    return jsonify(output)
 
 @app.route('/customer/<int:customer_id>', methods = ['GET'])
 def get_specific_customer(customer_id):

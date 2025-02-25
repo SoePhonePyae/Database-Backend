@@ -1,7 +1,3 @@
-CREATE DATABASE game_rent;
-
-\c game_rent;  -- Connect to game_rent database
-
 CREATE TABLE Admin (
 admin_id SERIAL PRIMARY KEY,
 admin_name VARCHAR(255) NOT NULL,
