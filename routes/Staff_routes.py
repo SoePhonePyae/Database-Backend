@@ -49,6 +49,29 @@ def create_staff():
     return jsonify({"message": "Staff added"})
         
 
+@app.route('/staff/<int:report_id>', methods=['GET'])
+def get_specific_staff(report_id):
+    s = Staff.query.get(report_id)
+    if not s:
+        return jsonify({"error": "Staff not found"}), 404
+    
+    return jsonify({
+        "staff_id" : s.staff_id,
+        "staff_name" : s.staff_name,
+        "email" : s.email,
+        "password" : s.password,
+        "phone_number" : s.phone_number,
+        "salary" : s.salary,
+        "street_address" : s.street_address,
+        "city" : s.city,
+        "state" : s.state,
+        "zip_code" : s.zip_code,
+        "type" : s.type,
+        "admin_id" : s.admin_id,
+        "last_action" : s.last_action
+    })
+
+
 @app.route('/staff/<int:staff_id>', methods=['PUT'])
 def update_staff(staff_id):
     data = request.get_json()
