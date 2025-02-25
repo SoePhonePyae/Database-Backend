@@ -1,6 +1,7 @@
 from database import db
 from datetime import datetime
 from sqlalchemy import Enum
+from sqlalchemy import Computed
 
 class Rental(db.Model):
     __tablename__ = "rental"
@@ -12,7 +13,12 @@ class Rental(db.Model):
     
     rent_date = db.Column(db.Date, nullable=False)
     due_date = db.Column(db.Date, nullable=False)
-    duration = db.Column(db.Integer)
-    
+
+    duration = db.Column(
+        db.Integer,
+        Computed('due_date - rent_date', persisted=True),  # or stored=True if using older SQLAlchemy
+        nullable=False
+    )    
+
     game = db.relationship('Game', backref=db.backref('rentals', lazy=True))
     customer = db.relationship('Customer', backref=db.backref('rentals', lazy=True))
