@@ -90,3 +90,15 @@ def update_customer(customer_id):
     
     db.session.commit()
     return jsonify({"message": "customer updated successfully"})
+
+
+@app.route('/customer/<int:customer_id>', methods=['DELETE'])
+def delete_customer(customer_id):
+    customer = Customer.query.get(customer_id)
+    if not customer:
+        return jsonify({"error": "customer not found"}), 404
+
+    db.session.delete(customer)
+    db.session.commit()
+    
+    return jsonify({"message": "customer deleted successfully"})
