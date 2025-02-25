@@ -98,7 +98,7 @@ customer_id INT NOT NULL,
 status rental_status NOT NULL,
 rent_date DATE NOT NULL,
 due_date DATE NOT NULL,
-duration INT,
+duration INT GENERATED ALWAYS AS (due_date - rent_date) STORED,
 CONSTRAINT fk_game FOREIGN KEY (game_id) REFERENCES Game(game_id)
 ON UPDATE CASCADE
 ON DELETE RESTRICT,
