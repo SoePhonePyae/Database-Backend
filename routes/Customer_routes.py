@@ -57,7 +57,7 @@ def check_customer_password(email, password):
     if not customer:
         return jsonify({"error": "Customer not found"}), 404
 
-    # Compare the plain-text password (again, not recommended for production)
+    # Compare the plain-text password
     if customer.password == password:
         return jsonify({
             "message": "Login successful",

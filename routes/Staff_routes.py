@@ -94,3 +94,12 @@ def update_staff(staff_id):
     
     db.session.commit()
     return jsonify({"message": "staff updated successfully"})
+
+
+@app.route('/staff/<string:email>', methods=['GET'])
+def auth_staff(email):
+    staff = Staff.query.filter_by(email=email).first()
+    if not staff:
+        return jsonify({"password": "null"}), 404
+    else:
+        return jsonify({"password": staff.password}), 200
