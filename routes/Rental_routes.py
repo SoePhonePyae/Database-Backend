@@ -106,7 +106,11 @@ def update_rental(rental_id):
     if not r:
         return jsonify({"error": "Rental not found"}), 404
     
+    r.game_id = data.get('game_id', r.game_id)
+    r.customer_id = data.get('customer_id', r.customer_id)
     r.status = data.get('status', r.status)
+    r.rent_date = data.get('rent_date', r.rent_date)
+    r.due_date = data.get('due_date', r.due_date)
 
     db.session.commit()
     return jsonify({"message": "Rental updated successfully"})
