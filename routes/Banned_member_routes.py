@@ -15,7 +15,8 @@ def get_banned():
 def create_ban():
     data = request.get_json()
     required_fields = ["customer_id", "reason"]
-
+    print("Data: ")
+    print(data)
     # Validate required fields
     if not all(field in data for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
@@ -29,4 +30,4 @@ def create_ban():
     db.session.add(new_ban)
     db.session.commit()
 
-    return jsonify({"message": "Member banned successfully", "ban_id": new_ban.ban_id}), 201
+    return jsonify({"message": "Member banned successfully"}), 201

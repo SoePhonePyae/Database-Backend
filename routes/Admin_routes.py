@@ -22,12 +22,21 @@ def get_admin_by_id(admin_id):
         "email": admin.email,
         "password": admin.password
     })
+    
 
-
-@app.route('/admin/<string:email>', methods=['GET'])
-def auth_admin(email):
-    admin = Admin.query.filter_by(email=email).first()
+@app.route('/login/admin', methods=['POST'])
+def auth_admin():
+    data = request.get_json()
+    required_fields = ['email', 'password']
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+    admin = Admin.query.filter_by(email=data['email']).first()
     if not admin:
-        return jsonify({"password": "null"}), 404
-    else:
-        return jsonify({"password": admin.password}), 200
+        return jsonify({"error": "admin not found"}), 404
+    if admin.password != data['password']:
+        return jsonify({"error": "Incorrect password"}), 400
+    return jsonify({
+        "admin_id" : admin.admin_id,
+        "admin_name" : admin.admin_name,
+        "email" : admin.email
+    })

@@ -76,7 +76,8 @@ def get_specific_staff(report_id):
 def update_staff(staff_id):
     data = request.get_json()
     staff = Staff.query.get(staff_id)
-
+    print("DATA")
+    print(data)
     if not staff:
         return jsonify({"error": "staff not found"}), 404
 
@@ -96,10 +97,27 @@ def update_staff(staff_id):
     return jsonify({"message": "staff updated successfully"})
 
 
-@app.route('/staff/<string:email>', methods=['GET'])
-def auth_staff(email):
-    staff = Staff.query.filter_by(email=email).first()
+@app.route('/login/staff', methods=['POST'])
+def auth_staff():
+    data = request.get_json()
+    required_fields = ['email', 'password']
+    if not all(field in data for field in required_fields):
+        return jsonify({"error": "Missing required fields"}), 400
+    staff = Staff.query.filter_by(email=data['email']).first()
     if not staff:
-        return jsonify({"password": "null"}), 404
-    else:
-        return jsonify({"password": staff.password}), 200
+        return jsonify({"error": "Staff not found"}), 404
+    if staff.password != data['password']:
+        return jsonify({"error": "Incorrect password"}), 400
+    return jsonify({
+        "staff_id": staff.staff_id,
+        "staff_name": staff.staff_name,
+        "email": staff.email,
+        "phone_number": staff.phone_number,
+        "salary": staff.salary,
+        "street_address": staff.street_address,
+        "city": staff.city,
+        "state": staff.state,
+        "zip_code": staff.zip_code,
+        "type": staff.type,
+        "admin_id": staff.admin_id
+    })
