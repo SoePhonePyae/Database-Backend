@@ -19,6 +19,25 @@ def get_customers():
                      "created_date" : c.created_date} 
                      for c in customers])
 
+@app.route('/customer/<int:customer_id>', methods = ['GET'])
+def get_specific_customer(customer_id):
+    c = Customer.query.get(customer_id)
+    if not c:
+        return jsonify({"error" : "Customer not found"}), 404
+    
+    return jsonify({"customer_id" : c.customer_id,
+                     "customer_name" : c.customer_name,
+                     "email" : c.email,
+                     "password" : c.password,
+                     "phone_number" : c.phone_number,
+                     "street_address" : c.street_address,
+                     "city" : c.city,
+                     "state" : c.state,
+                     "zip_code" : c.zip_code,
+                     "staff_id" : c.staff_id,
+                     "created_date" : c.created_date})
+
+
 @app.route('/customer/<string:email>/<string:password>', methods=['GET'])
 def check_customer_password(email, password):
     """
