@@ -68,6 +68,7 @@ def get_returned_rentals_by_customerid(customer_id):
         {
             "rental_id": r.rental_id,
             "game_id": r.game_id,
+            "game_name": r.game.game_name,
             "customer_id": r.customer_id,
             "status": r.status,
             "rent_date": r.rent_date,
@@ -76,7 +77,6 @@ def get_returned_rentals_by_customerid(customer_id):
         }
         for r in rentals
     ])
-
 
 @app.route('/rental', methods=['POST'])
 def create_rental():
