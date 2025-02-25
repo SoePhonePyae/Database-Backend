@@ -22,3 +22,12 @@ def get_admin_by_id(admin_id):
         "email": admin.email,
         "password": admin.password
     })
+
+
+@app.route('/admin/<string:email>', methods=['GET'])
+def auth_admin(email):
+    admin = Admin.query.filter_by(email=email).first()
+    if not admin:
+        return jsonify({"password": "null"}), 404
+    else:
+        return jsonify({"password": admin.password}), 200
